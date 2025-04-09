@@ -4,6 +4,7 @@ import StatCard from "@/components/Dashboard/StatCard";
 import LowStockAlert from "@/components/Dashboard/LowStockAlert";
 import CategoryDistribution from "@/components/Dashboard/CategoryDistribution";
 import { useInventory } from "@/context/InventoryContext";
+import { CURRENCY } from "@/types/item";
 
 const Dashboard = () => {
   const { items } = useInventory();
@@ -19,7 +20,7 @@ const Dashboard = () => {
 
   return (
     <div className="container mx-auto py-6 px-4">
-      <h1 className="text-3xl font-bold mb-6">Inventory Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-6 text-primary">Inventory Dashboard</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <StatCard
@@ -42,8 +43,8 @@ const Dashboard = () => {
         />
         <StatCard
           title="Inventory Value"
-          value={`$${totalValue.toFixed(2)}`}
-          description="Total value of inventory"
+          value={`${CURRENCY.symbol} ${totalValue.toFixed(2)}`}
+          description={`Total value in ${CURRENCY.name}`}
           icon={DollarSign}
         />
       </div>

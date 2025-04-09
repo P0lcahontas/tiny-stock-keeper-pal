@@ -17,7 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Item } from "@/types/item";
+import { Item, CURRENCY } from "@/types/item";
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
@@ -40,9 +40,9 @@ const InventoryList = ({ items, onDeleteItem, onEditItem }: InventoryListProps) 
   };
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border bg-white shadow-sm">
       <Table>
-        <TableHeader>
+        <TableHeader className="bg-secondary/50">
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Category</TableHead>
@@ -60,18 +60,20 @@ const InventoryList = ({ items, onDeleteItem, onEditItem }: InventoryListProps) 
             </TableRow>
           ) : (
             items.map((item) => (
-              <TableRow key={item.id}>
+              <TableRow key={item.id} className="hover:bg-secondary/30">
                 <TableCell className="font-medium">{item.name}</TableCell>
                 <TableCell>
-                  <Badge variant="outline">{item.category}</Badge>
+                  <Badge variant="outline" className="bg-primary/10 text-primary-foreground border-primary/20">
+                    {item.category}
+                  </Badge>
                 </TableCell>
                 <TableCell className="text-right">
-                  <span className={item.quantity <= 5 ? "text-red-500 font-semibold" : ""}>
+                  <span className={item.quantity <= 5 ? "text-destructive font-semibold" : ""}>
                     {item.quantity}
                   </span>
                 </TableCell>
-                <TableCell className="text-right">
-                  ${item.price.toFixed(2)}
+                <TableCell className="text-right font-medium">
+                  {CURRENCY.symbol} {item.price.toFixed(2)}
                 </TableCell>
                 <TableCell className="text-right">
                   <DropdownMenu>

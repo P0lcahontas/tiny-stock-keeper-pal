@@ -7,3 +7,8 @@ export interface Item {
   price: number;
   createdAt: string;
 }
+
+export const CURRENCY = {
+  symbol: "Sh",
+  name: "Shillings"
+};

@@ -10,7 +10,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 bg-gray-50">
+      <main className="flex-1 bg-gradient-to-br from-secondary to-white">
         {children}
       </main>
     </div>
